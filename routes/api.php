@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*

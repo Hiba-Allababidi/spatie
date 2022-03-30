@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\User_verification;
 use App\Notifications\EmailVerification;
@@ -28,7 +29,8 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,30',
             'email' => 'required|string|email|unique:users|max:30',
-            'password' => 'required|string|confirmed|min:8'
+            'password' => 'required|string|confirmed|min:8',
+            'roles' => 'required'
         ]);
         if ($validator->fails())
             return response()->json($validator->errors(), 400);
@@ -37,6 +39,7 @@ class RegisterController extends Controller
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         ));
+        $user->assignRole($request->input('roles'));
 
         return $this->send_verification_code($user);
     }

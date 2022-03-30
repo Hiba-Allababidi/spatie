@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\ResetCodePassword;
 use App\Models\User;
 use App\Notifications\EmailVerification;
